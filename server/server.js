@@ -1,6 +1,7 @@
 import express from "express";
 import { PORT } from "./constants.js";
 import connectDB from "./DB/database.connect.js";
+import router from "./routes/router.js";
 
 connectDB();
 const app = express();
@@ -8,6 +9,8 @@ const app = express();
 app.get("/api/health", (req, res) => {
   res.status(200).send("<h1>Server is running</h1>");
 });
+
+app.use("/api", router);
 
 app.listen(PORT, () =>
   console.log(`Server is running on port http://localhost:${PORT}`)
